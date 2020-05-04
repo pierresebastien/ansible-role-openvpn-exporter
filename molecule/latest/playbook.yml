@@ -1,0 +1,7 @@
+---
+- hosts: all
+  any_errors_fatal: true
+  roles:
+    - role: ansible-role-openvpn-exporter
+      vars:
+        openvpn_exporter_version: "latest"
