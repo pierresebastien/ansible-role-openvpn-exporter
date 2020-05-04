@@ -4,7 +4,6 @@ openvpn_exporter_system_group: "openvpn_exporter"
 openvpn_exporter_system_user: "openvpn_exporter"
 openvpn_exporter_user_additional_groups: ""
 openvpn_exporter_install_dir: /opt/openvpn_exporter
-openvpn_exporter_tmp_dir: /tmp
 
 openvpn_exporter_config_web_address: ""
 openvpn_exporter_config_web_path: ""
