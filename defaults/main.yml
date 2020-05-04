@@ -1,0 +1,19 @@
+---
+openvpn_exporter_version: "1.0.0"
+openvpn_exporter_system_group: "openvpn_exporter"
+openvpn_exporter_system_user: "openvpn_exporter"
+openvpn_exporter_user_additional_groups: ""
+openvpn_exporter_install_dir: /opt/openvpn_exporter
+openvpn_exporter_tmp_dir: /tmp
+
+openvpn_exporter_config_web_address: ""
+openvpn_exporter_config_web_path: ""
+openvpn_exporter_config_web_root: ""
+openvpn_exporter_disable_client_metrics: False
+openvpn_exporter_config_enable_golang_metrics: False
+openvpn_exporter_config_log_level: "info"
+openvpn_exporter_config_status_files: []
+
+openvpn_exporter_dist_name: "openvpn_exporter-linux-{{ go_arch }}"
+openvpn_exporter_dist_url: "https://github.com/patrickjahns/openvpn_exporter/releases/download/v{{ openvpn_exporter_version }}/{{ openvpn_exporter_dist_name }}"
+openvpn_exporter_checksum_url: "https://github.com/patrickjahns/openvpn_exporter/releases/download/v{{ openvpn_exporter_version }}/{{ openvpn_exporter_dist_name }}.sha256"

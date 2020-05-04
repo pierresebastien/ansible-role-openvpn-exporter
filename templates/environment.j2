@@ -1,0 +1,17 @@
+{{ ansible_managed | comment }}
+{% if openvpn_exporter_config_web_address|length %}
+OPENVPN_EXPORTER_WEB_ADDRESS={{ openvpn_exporter_config_web_address }}
+{% endif %}
+{% if openvpn_exporter_config_web_path|length %}
+OPENVPN_EXPORTER_WEB_PATH={{ openvpn_exporter_config_web_path }}
+{% endif %}
+{% if openvpn_exporter_config_web_root|length %}
+OPENVPN_EXPORTER_WEB_ADDRESS={{ openvpn_exporter_config_web_root }}
+{% endif %}
+OPENVPN_EXPORTER_DISABLE_CLIENT_METRICS={{ openvpn_exporter_disable_client_metrics|bool }}
+OPENVPN_EXPORTER_ENABLE_GOLANG_METRICS={{ openvpn_exporter_config_enable_golang_metrics|bool }}
+OPENVPN_EXPORTER_LOG_LEVEL={{ openvpn_exporter_config_log_level }}
+OPENVPN_EXPORTER_STATUS_FILE={% for statusfile in openvpn_exporter_config_status_files %}
+{{ statusfile }}
+{%- if not loop.last %},{% endif %}
+{% endfor %}

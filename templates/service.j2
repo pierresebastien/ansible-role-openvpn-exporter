@@ -1,0 +1,19 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=OpenVPN Exporter
+After=network-online.target
+StartLimitInterval=0
+
+[Service]
+User={{ openvpn_exporter_system_user }}
+Group={{ openvpn_exporter_system_group }}
+EnvironmentFile=/etc/default/openvpn_exporter
+
+ExecStart=/usr/local/bin/openvpn_exporter
+
+SyslogIdentifier=openvpn_exporter
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

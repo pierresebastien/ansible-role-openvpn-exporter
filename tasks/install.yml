@@ -1,0 +1,108 @@
+---
+- name: Ensure openvpn_exporter group exists
+  group:
+    name: "{{ openvpn_exporter_system_group }}"
+    state: present
+    system: True
+  when: openvpn_exporter_system_group != "root"
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Ensure openvpn_exporter user exists
+  user:
+    name: "{{ openvpn_exporter_system_user }}"
+    group: "{{ openvpn_exporter_system_group }}"
+    groups: "{{ openvpn_exporter_user_additional_groups }}"
+    append: True
+    shell: /usr/sbin/nologin
+    system: True
+    createhome: False
+    home: /
+  when: openvpn_exporter_system_user != "root"
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Ensure /usr/local/bin exists
+  file:
+    path: /usr/local/bin
+    state: directory
+    mode: 0755
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Create application dirs
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ openvpn_exporter_system_user }}"
+    group: "{{ openvpn_exporter_system_group }}"
+    mode: 0755
+  with_items:
+    - "{{ openvpn_exporter_install_dir }}"
+    - "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}"
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Check openvpn_exporter binary
+  stat:
+    path: "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}/openvpn_exporter"
+  register: openvpn_exporter_binary
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Download openvpn_exporter binaries
+  get_url:
+    url: "{{ openvpn_exporter_dist_url }}"
+    dest: "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}/openvpn_exporter"
+    force: True
+    checksum: "sha256:{{ __openvpn_exporter_checksum }}"
+  when: not openvpn_exporter_binary.stat.exists
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Ensure openvpn_exporter binary is executable
+  file:
+    path: "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}/openvpn_exporter"
+    state: file
+    owner: "{{ openvpn_exporter_system_user }}"
+    group: "{{ openvpn_exporter_system_group }}"
+    mode: 0755
+
+- name: Ensure latest binary is simlinked
+  notify:
+    - Restart openvpn_exporter
+  ignore_errors: "{{ ansible_check_mode }}"
+  file:
+    state: link
+    src: "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}/openvpn_exporter"
+    dest: /usr/local/bin/openvpn_exporter
+    mode: 0755
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Create configuration
+  notify:
+    - Restart openvpn_exporter
+  template:
+    src: environment.j2
+    dest: /etc/default/openvpn_exporter
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Create systemd service unit
+  notify:
+    - Restart openvpn_exporter
+  template:
+    src: service.j2
+    dest: /etc/systemd/system/openvpn_exporter.service
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter

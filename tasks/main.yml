@@ -1,0 +1,22 @@
+---
+- include: preflight.yml
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- include: install.yml
+  become: True
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+
+- name: Ensure openvpn_exporter service is started and enabled
+  become: True
+  systemd:
+    daemon_reload: True
+    name: openvpn_exporter
+    state: started
+    enabled: True
+  tags:
+    - openvpn_exporter_run
+    - openvpn_exporter
