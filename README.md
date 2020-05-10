@@ -21,7 +21,7 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 
 | Name                                      | Default Value    | Description                                                             |
 | ----------------------------------------- | ---------------- | ------------------------------------------------------------------------|
-| `openvpn_exporter_version`                | 1.0.0            | The version of the [openvpn_eporter](https://github.com/patrickjahns/openvpn_exporter/releases) to install |
+| `openvpn_exporter_version`                | 1.1.0            | The version of the [openvpn_eporter](https://github.com/patrickjahns/openvpn_exporter/releases) to install |
 | `openvpn_exporter_system_user`            | openvpn_exporter | User that openvpn_exporter will run as |
 | `openvpn_exporter_system_group`           | openvpn_exporter | Groups the openvpn_exporter user belongs to |
 | `openvpn_exporter_user_additional_groups` | ""               | Additional groups the openvpn_exporter user should belong to (i.e. openvpn) |
