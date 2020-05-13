@@ -61,6 +61,7 @@
     dest: "{{ openvpn_exporter_install_dir }}/{{ openvpn_exporter_version }}/openvpn_exporter"
     force: True
     checksum: "sha256:{{ __openvpn_exporter_checksum }}"
+  ignore_errors: "{{ ansible_check_mode }}"
   when: not openvpn_exporter_binary.stat.exists
   tags:
     - openvpn_exporter_install
@@ -73,6 +74,7 @@
     owner: "{{ openvpn_exporter_system_user }}"
     group: "{{ openvpn_exporter_system_group }}"
     mode: 0755
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Ensure latest binary is simlinked
   notify:
