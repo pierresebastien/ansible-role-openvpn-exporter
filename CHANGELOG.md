@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/patrickjahns/ansible-role-openvpn-exporter/tree/1.1.1) (2020-05-13)
+
+[Full Changelog](https://github.com/patrickjahns/ansible-role-openvpn-exporter/compare/1.1.0...1.1.1)
+
+**Fixed bugs:**
+
+- fix: allow to run without failures during checkmode [\#5](https://github.com/patrickjahns/ansible-role-openvpn-exporter/pull/5) ([patrickjahns](https://github.com/patrickjahns))
+
 ## [1.1.0](https://github.com/patrickjahns/ansible-role-openvpn-exporter/tree/1.1.0) (2020-05-10)
 
 [Full Changelog](https://github.com/patrickjahns/ansible-role-openvpn-exporter/compare/1.0.0...1.1.0)
