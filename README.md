@@ -1,6 +1,6 @@
 # ansible-role-openvpn-exporter
 
-[![Build Status](https://travis-ci.org/patrickjahns/ansible-role-openvpn-exporter.svg?branch=master)](https://travis-ci.org/patrickjahns/ansible-role-openvpn-exporter)
+[![Test](https://github.com/patrickjahns/ansible-role-openvpn-exporter/workflows/Test/badge.svg)](https://github.com/patrickjahns/ansible-role-openvpn-exporter/actions?query=workflow%3ATest+branch%3Amaster)
 [![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Ansible Role](https://img.shields.io/badge/ansible%20role-patrickjahns.openvpn_exporter-blue.svg)](https://galaxy.ansible.com/patrickjahns/openvpn_exporter/)
 [![GitHub tag](https://img.shields.io/github/tag/patrickjahns/ansible-role-openvpn-exporter.svg)](https://github.com/patrickjahns/ansible-role-openvpn-exporter/tags)
@@ -68,11 +68,8 @@ If you would like to run tests on remote docker host just specify `DOCKER_HOST` 
 
 ## CI
 
-### Travis
-Combining molecule and travis CI allows us to test how new PRs will behave when used with multiple ansible versions and multiple operating systems. This also allows use to create test scenarios for different role configurations. As a result we have a quite large test matrix which will take more time than local testing, so please be patient.
-
-### Github Actions
-Additionally to TravisCI some github actions are run to perform static code analysis
+Github actions is used to test and validate this ansible role via [ansible-later](https://github.com/thegeeklab/ansible-later) and [molecule](https://github.com/ansible-community/molecule).
+Combining molecule and travis CI allows us to test how new PRs will behave when used with multiple ansible versions and multiple operating systems. This also allows use to create test scenarios for different role configurations. As a result we have a quite large test matrix which will take more time than local testing, so please be patient.	Molecule tests will run with several operation systems as well as ansible version in order to ensure compatability.
 
 ## License
 
