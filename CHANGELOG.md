@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.1](https://github.com/patrickjahns/ansible-role-openvpn-exporter/tree/1.2.1) (2020-12-26)
+
+[Full Changelog](https://github.com/patrickjahns/ansible-role-openvpn-exporter/compare/1.2.0...1.2.1)
+
+**Merged pull requests:**
+
+- chore: bump upstream version to 1.1.2 [\#11](https://github.com/patrickjahns/ansible-role-openvpn-exporter/pull/11) ([patrickjahns](https://github.com/patrickjahns))
+- ci: migrate to github actions [\#9](https://github.com/patrickjahns/ansible-role-openvpn-exporter/pull/9) ([patrickjahns](https://github.com/patrickjahns))
+
 ## [1.2.0](https://github.com/patrickjahns/ansible-role-openvpn-exporter/tree/1.2.0) (2020-06-05)
 
 [Full Changelog](https://github.com/patrickjahns/ansible-role-openvpn-exporter/compare/1.1.1...1.2.0)
