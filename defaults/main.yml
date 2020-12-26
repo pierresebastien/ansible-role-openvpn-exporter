@@ -1,5 +1,5 @@
 ---
-openvpn_exporter_version: "1.1.1"
+openvpn_exporter_version: "1.1.2"
 openvpn_exporter_system_group: "openvpn_exporter"
 openvpn_exporter_system_user: "openvpn_exporter"
 openvpn_exporter_user_additional_groups: ""
