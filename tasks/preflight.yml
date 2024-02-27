@@ -1,15 +1,21 @@
 ---
 - name: Assert usage of systemd as an init system
-  assert:
+  ansible.builtin.assert:
     that: ansible_service_mgr == 'systemd'
     msg: "This module only works with systemd"
   tags:
     - openvpn_exporter_install
     - openvpn_exporter
 
-- block:
+- name: Retrieve OpenVPN exporter latest version
+  when:
+    - openvpn_exporter_version == "latest"
+  tags:
+    - openvpn_exporter_install
+    - openvpn_exporter
+  block:
     - name: Get latest release
-      uri:
+      ansible.builtin.uri:
         url: "https://api.github.com/repos/patrickjahns/openvpn_exporter/releases/latest"
         method: GET
         return_content: True
@@ -24,16 +30,11 @@
       retries: 5
 
     - name: "Set openvpn_exporter version to {{ _latest_release.json.tag_name[1:] }}"
-      set_fact:
+      ansible.builtin.set_fact:
         openvpn_exporter_version: "{{ _latest_release.json.tag_name[1:] }}"
-  when:
-    - openvpn_exporter_version == "latest"
-  tags:
-    - openvpn_exporter_install
-    - openvpn_exporter
 
 - name: "Get checksum for {{ openvpn_exporter_version }}"
-  set_fact:
+  ansible.builtin.set_fact:
     __openvpn_exporter_checksum: "{{ lookup('url', openvpn_exporter_checksum_url).split(' ')[0] }}"
   run_once: True
   tags:

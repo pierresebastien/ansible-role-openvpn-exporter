@@ -1,10 +1,12 @@
 ---
-- include: preflight.yml
+- name: Preflight tasks
+  ansible.builtin.import_tasks: preflight.yml
   tags:
     - openvpn_exporter_install
     - openvpn_exporter
 
-- include: install.yml
+- name: Installation tasks
+  ansible.builtin.import_tasks: install.yml
   become: True
   tags:
     - openvpn_exporter_install
@@ -12,7 +14,7 @@
 
 - name: Ensure openvpn_exporter service is started and enabled
   become: True
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: True
     name: openvpn_exporter
     state: started
